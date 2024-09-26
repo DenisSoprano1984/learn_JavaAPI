@@ -24,12 +24,8 @@ public class Ex6PrintRedirect {
                 .get("https://playground.learnqa.ru/api/long_redirect")
                 .andReturn();
 
-        response.prettyPrint();
-        //response.print();
-        //получение всех заголовHeaders responseHeaders = response.getHeaders();
-        //System.out.println(responseHeaders);
         String locationHeader = response.getHeader("Location");
-        System.out.println(locationHeader);
+        System.out.println("Адрес для перехода:" + " " + locationHeader);
 
     }
 }
