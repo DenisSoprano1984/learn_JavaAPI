@@ -14,7 +14,7 @@ public class Ex7CountLongRedirect {
     private static final Logger log = LoggerFactory.getLogger(Ex7CountLongRedirect.class);
 
     @Test
-    public void testParsingJson() {
+    public void testRedirectCaunter() {
 
         String urlGet = "https://playground.learnqa.ru/api/long_redirect";
         String urlRedirect;
@@ -63,6 +63,7 @@ public class Ex7CountLongRedirect {
         System.out.println("Каунтер редиректов для ДЗ7: " + redirectCount);
         System.out.println("последний статус код: " + statusCode);
         }
+        // коммит и пуш
         }
 
 
