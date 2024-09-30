@@ -4,14 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class Ex7CountLongRedirect {
 
-
-    private static final Logger log = LoggerFactory.getLogger(Ex7CountLongRedirect.class);
 
     @Test
     public void testRedirectCaunter() {
@@ -36,7 +32,7 @@ public class Ex7CountLongRedirect {
         System.out.println("первый редирект: " + urlRedirect);
         System.out.println("статус код после первого редиректа: " + statusCode);
 
-        while (statusCode == 301 ) {
+        while (statusCode != 200 ) {
 
             Response response1 = RestAssured
                     .given()
