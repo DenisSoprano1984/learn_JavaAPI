@@ -73,7 +73,6 @@ cookies.put("auth_cookie", responseCook);
 
             response2.prettyPrint();
           response2.print();
-             responsFromServer = response2.asString();
       System.out.println("Сохранено в переменную после ответа с сервера " + responsFromServer);
 
 
