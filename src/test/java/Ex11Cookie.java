@@ -4,9 +4,12 @@ import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static io.restassured.RestAssured.enableLoggingOfRequestAndResponseIfValidationFails;
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class Ex11Cookie {
 
@@ -16,28 +19,38 @@ public class Ex11Cookie {
             .get("https://playground.learnqa.ru/api/homework_cookie")
                     .andReturn();
 
-        assertNotNull("кука не пришла ", response.getCookie("HomeWork"));
-        assertTrue("кука не пришла",response.getCookie("HomeWork")!= null);
+            Map<String, String> cuca = response.getCookies();
+            //    System.out.println(cuca);
+                String cucaValue = cuca.get("HomeWork");
+           //     System.out.println(cucaValue);
 
+                // assertTrue(cuca.containsKey("HomeWork"), "Кука отсутствует");
 
-        response.prettyPrint();
-        response.getHeaders();
-        Headers responseHeaders = response.getHeaders();
-        System.out.println(responseHeaders);
-        String cookieParsing = response.getCookie("HomeWork");
-        System.out.println(cookieParsing);
+        //assertNotNull(response.getCookie("HomeWork"),"кука не пришла ");
+        assertNotNull(cucaValue, "не пришла почему-то");
+     //   assertTrue(response.getCookie("HomeWork")!= null, "кука не пришла");
+        assertTrue(cucaValue.contains("hw_valuee"), "Значение cookie не соответсвует ожидаемому");
 
-        String cookieParsing1 = response.getCookie("expires");
-        System.out.println("Что такое Expire и как это забрать? "  + cookieParsing1);
-
-        String cookieParsing2 = response.getCookie("Max-Age");
-        System.out.println(cookieParsing2);
-
-        String cookieParsing3 = response.getCookie("path");
-        System.out.println(cookieParsing3);
-
-        String cookieParsing4 = response.getCookie("domain");
-        System.out.println(cookieParsing4);
+//
+//
+//        response.prettyPrint();
+//        response.getHeaders();
+//        Headers responseHeaders = response.getHeaders();
+//        System.out.println(responseHeaders);
+//        String cookieParsing = response.getCookie("HomeWork");
+//        System.out.println(cookieParsing);
+//
+//        String cookieParsing1 = response.getCookie("expires");
+//        System.out.println("Что такое Expire и как это забрать? "  + cookieParsing1);
+//
+//        String cookieParsing2 = response.getCookie("Max-Age");
+//        System.out.println(cookieParsing2);
+//
+//        String cookieParsing3 = response.getCookie("path");
+//        System.out.println(cookieParsing3);
+//
+//        String cookieParsing4 = response.getCookie("domain");
+//        System.out.println(cookieParsing4);
 
 
 
