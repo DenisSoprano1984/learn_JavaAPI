@@ -29,7 +29,7 @@ public class Ex11Cookie {
         //assertNotNull(response.getCookie("HomeWork"),"кука не пришла ");
         assertNotNull(cucaValue, "не пришла почему-то");
      //   assertTrue(response.getCookie("HomeWork")!= null, "кука не пришла");
-        assertTrue(cucaValue.contains("hw_valuee"), "Значение cookie не соответсвует ожидаемому");
+        assertTrue(cucaValue.contains("hw_value"), "Значение cookie не соответсвует ожидаемому");
 
 //
 //
