@@ -63,5 +63,7 @@ assertTrue(headers.hasHeaderWithName("x-csrf-token"), "Response doesn`t have 'x-
 //        System.out.println(headers);
 //        System.out.println(cookies);
 
+
+
     }
 }
