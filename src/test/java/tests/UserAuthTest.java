@@ -57,11 +57,11 @@ assertTrue(headers.hasHeaderWithName("x-csrf-token"), "Response doesn`t have 'x-
                 "user id oauth request is not equal to user_id from check request"
         );
 
-        System.out.println(userIdOnAuth);
-        System.out.println(userIdOnChek);
-        System.out.println(authData);
-        System.out.println(headers);
-        System.out.println(cookies);
+//        System.out.println(userIdOnAuth);
+//        System.out.println(userIdOnChek);
+//        System.out.println(authData);
+//        System.out.println(headers);
+//        System.out.println(cookies);
 
     }
 }
