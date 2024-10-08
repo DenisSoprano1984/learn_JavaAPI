@@ -68,7 +68,9 @@ public class Ex13UserAgent {
 
         if (agent.equals(userAgent2)){
 
+            assertEquals(platform, platform2, "Платформа не совпадате с ожиданием. Заказывали " + platform2 + " а получили: " + platform );
             assertEquals(browser, browser2, "Браузер не совпадате с ожиданием. Заказывали " + browser2 + " а получили: " + browser );
+            assertEquals(device, device2, "устройсвот не совпадате с ожиданием. Заказывали " + device2 + " а получили: " + device );
 
         } else if (agent.equals(userAgent3)){
             assertEquals(platform,platform3, "Платформа не совпадает с ожиданием. Заказывали " + platform3 + " а получили " + platform );
