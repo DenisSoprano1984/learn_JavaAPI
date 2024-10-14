@@ -23,7 +23,7 @@ public class Ex13UserAgent {
     String userAgent2 = "Mozilla/5.0 (iPad; CPU OS 13_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/91.0.4472.77 Mobile/15E148 Safari/604.1";
     String platform2 = "Mobile"; // v
     String browser2 = "Chrome"; // Nо' вместо Chrome
-    String device2 = "iOS"; //  v
+    String device2 = "iOS1"; //  v
 
     String userAgent3 = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)";
     String platform3 = "Googlebot"; // Unknown' вместо 'Googlebot'
