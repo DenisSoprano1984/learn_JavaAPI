@@ -11,6 +11,13 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import org.junit.jupiter.api.DisplayName;
+
+@Epic("Authorisations cases")
+@Feature("Auhtorisation")
 public class UserEditTest extends BaseTestCase {
 
     @Test
