@@ -160,7 +160,7 @@ public class ApiCoreRequests {
                 .andReturn();
 
     }
-    @Step("to try create step w/o LastName field")
+    @Step("to try create step w/o firstName field")
     public Response responseWOLastName (String url) {
         Map<String, String> userDataWoEmail = new HashMap<>();
 
@@ -177,5 +177,26 @@ public class ApiCoreRequests {
 
     }
 
+    @Step("make a get-request with token and auth cookie")
+    public Response getRequestUserInfo(String url, String token, String cookie, int user_id) {
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .get(url + user_id)
+                .andReturn();
+    }
+
+    @Step("get auth data")
+    public Response getAuthRequest(String url, Map<String, String> authData) {
+        return given()
+                .filter(new AllureRestAssured())
+                .body(authData)
+                .post(url)
+                .andReturn();
+
+
+
+    }
 
 }
