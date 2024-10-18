@@ -3,6 +3,7 @@ package lib;
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.Header;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 
@@ -67,6 +68,8 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
+
+
         @Step("make a request for create user!!")
         public Response responseCreateUser (String url, Map<String, String> userData) {
             return given()
@@ -75,6 +78,17 @@ public class ApiCoreRequests {
                     .post(url)
                     .andReturn();
     }
+
+    @Step("make a request for create user Json!!")
+    public JsonPath responseCreateUserJson (String url, Map<String, String> userData) {
+        return given()
+                .filter(new AllureRestAssured())
+                .body(userData)
+                .post(url)
+                .jsonPath();
+
+    }
+
 
     @Step("make a request for create user!! 'Step for Test positive create user'")
     public Response testCreateUserSuccessfully (String url, Map<String, String> userData) {
@@ -196,6 +210,17 @@ public class ApiCoreRequests {
                 .andReturn();
 
 
+
+    }
+    @Step("edit user")
+    public Response putNewUserData(String url,  String token, String cookie, Map<String, String> newData) {
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .body(newData)
+                .put(url)
+                .andReturn();
 
     }
 
