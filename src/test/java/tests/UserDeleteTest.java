@@ -25,7 +25,7 @@ import java.util.Map;
 public class UserDeleteTest extends BaseTestCase {
 
 
-    String url = "https://playground.learnqa.ru/api";
+    String url = "https://playground.learnqa.ru/api_dev";
     //int vinUserId = 2;
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
@@ -44,12 +44,12 @@ public class UserDeleteTest extends BaseTestCase {
         Response authDataAnotherAccFor = apiCoreRequests
                 .getAuthRequest(url + "/user/login", authDataTwoAcc);
 
-        //System.out.println(authDataAnotherAccFor.asString());
+        System.out.println(authDataAnotherAccFor.asString());
         String userIdString = String.valueOf(getIntFromJson(authDataAnotherAccFor,"user_id"));
         int userId = Integer.parseInt(userIdString);
 
 
-        //System.out.println("Айди из боди ответа авторизации " + userId);
+        System.out.println("Айди из боди ответа авторизации " + userId);
 
         //Попытаемся удалить аккаунта 2
 
@@ -171,13 +171,13 @@ public class UserDeleteTest extends BaseTestCase {
         JsonPath responseCreateAuth = apiCoreRequests
                 .responseCreateUserJson(url + "/user/", userData );
 
-//        System.out.println("какой-то ответ : " + responseCreateAuth.getString("$"));
+      //  System.out.println("какой-то ответ : " + responseCreateAuth.getString("$"));
 
         int userId= responseCreateAuth.getInt("id");
         String originalUsername = userData.get("username"); // Записали, чтоб проверить неизменность
 
-//        System.out.println("Создали пользователя: " + originalEmail);
-//        System.out.println("ID созданного пользователя : " + userId);
+      System.out.println("Создали пользователя: " + originalUsername);
+        System.out.println("ID созданного пользователя : " + userId);
 
         // Авторизация под 2 аккаунтом
 
@@ -198,12 +198,12 @@ public class UserDeleteTest extends BaseTestCase {
                         this.getCookie(authDataAnotherAccFor,"auth_sid"),
                         userId  );
 
-    //    System.out.println("Ответ после попытке изменения " + responseDeleteUser.asString());
+        System.out.println("Ответ после попытке изменения " + responseDeleteUser.asString());
         Assertions.assertJsonHasField(responseDeleteUser, "error");
         Assertions.asserJsonByName(responseDeleteUser,
                 "error",
                 "Please, do not delete test users with ID 1, 2, 3, 4 or 5.");
-       // System.out.println("Ответ после попытки удаления " + responseDeleteUser.asString());
+        System.out.println("Ответ после попытки удаления " + responseDeleteUser.asString());
 
 
         //Запрос данных под неавторизованным пользователем

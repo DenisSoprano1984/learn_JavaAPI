@@ -31,7 +31,7 @@ import lib.ApiCoreRequests;
 
 public class UserAuthTest extends BaseTestCase {
 
-    String url = "https://playground.learnqa.ru/api";
+    String url = "https://playground.learnqa.ru/api_dev";
     String cookie;
     String header;
     int userIdOnAuth;

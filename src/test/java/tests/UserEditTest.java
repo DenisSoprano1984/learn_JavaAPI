@@ -26,7 +26,7 @@ public class UserEditTest extends BaseTestCase {
 
     String cookie;
     String header;
-    String url = "https://playground.learnqa.ru/api";
+    String url = "https://playground.learnqa.ru/api_dev";
 
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();

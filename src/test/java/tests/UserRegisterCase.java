@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class UserRegisterCase extends BaseTestCase {
 
-    String url = "https://playground.learnqa.ru/api/user/";
+    String url = "https://playground.learnqa.ru/api_dev/user/";
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
