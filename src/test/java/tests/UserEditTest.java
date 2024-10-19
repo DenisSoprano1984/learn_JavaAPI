@@ -19,8 +19,8 @@ import io.qameta.allure.Feature;
 
 
 
-@Epic("Authorisations cases")
-@Feature("Auhtorisation")
+@Epic("Edit cases")
+@Feature("Edit")
 
 public class UserEditTest extends BaseTestCase {
 
