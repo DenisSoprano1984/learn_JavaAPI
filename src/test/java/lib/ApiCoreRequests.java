@@ -1,5 +1,6 @@
 package lib;
 
+//import com.sun.imageio.plugins.common.ReaderUtil;
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.Header;
@@ -222,6 +223,24 @@ public class ApiCoreRequests {
                 .put(url)
                 .andReturn();
 
+    }
+
+    @Step("delete user")
+    public Response deleteUser (String url,  String token, String cookie, int userId) {
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .delete (url + "/api/user/" + userId)
+                .andReturn();
+    }
+
+    @Step("GetWOauth")
+    public Response getUserinfoWOauth (String url, int userId){
+        return given()
+                .filter(new AllureRestAssured())
+                .get(url + "/api/user/" + userId)
+                .andReturn();
     }
 
 }
