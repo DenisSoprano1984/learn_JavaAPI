@@ -63,7 +63,7 @@ public class UserRegisterCase extends BaseTestCase {
 
         Response responseCreateAuth = apiCoreRequests
                 .responseCreateUser(
-                        "https://playground.learnqa.ru/api/user/",
+                        url,
                         userData);
 
 
@@ -88,7 +88,7 @@ public class UserRegisterCase extends BaseTestCase {
 //                .andReturn();
 
         Response responseCreateUserSuccessefully = apiCoreRequests
-                .responseCreateUser("https://playground.learnqa.ru/api/user/", userData);
+                .responseCreateUser(url, userData);
 
  //     System.out.println(responseCreateAuth.asString());
 //        System.out.println(responseCreateAuth.statusCode());
@@ -148,7 +148,7 @@ public class UserRegisterCase extends BaseTestCase {
         Response responseCreateAuth = RestAssured
                 .given()
                 .body(userData)
-                .post("https://playground.learnqa.ru/api/user/")
+                .post(url)
                 .andReturn();
 
 //     System.out.println(responseCreateAuth.asString());
@@ -229,7 +229,7 @@ public class UserRegisterCase extends BaseTestCase {
 //      System.out.println(userData2);
 
         RequestSpecification spec = RestAssured.given();
-        spec.baseUri("https://playground.learnqa.ru/api/user/");
+        spec.baseUri(url);
 
       if (field.equals("email")){
           Response responseWoField = apiCoreRequests.responseWOemail(url);

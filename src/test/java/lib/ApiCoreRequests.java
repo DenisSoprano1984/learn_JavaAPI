@@ -231,7 +231,7 @@ public class ApiCoreRequests {
                 .filter(new AllureRestAssured())
                 .header(new Header("x-csrf-token", token))
                 .cookie("auth_sid", cookie)
-                .delete (url + "/api/user/" + userId)
+                .delete (url + "/user/" + userId)
                 .andReturn();
     }
 
@@ -239,7 +239,7 @@ public class ApiCoreRequests {
     public Response getUserinfoWOauth (String url, int userId){
         return given()
                 .filter(new AllureRestAssured())
-                .get(url + "/api/user/" + userId)
+                .get(url + "/user/" + userId)
                 .andReturn();
     }
 

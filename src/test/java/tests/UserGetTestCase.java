@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class UserGetTestCase extends BaseTestCase {
 
-    String url = "https://playground.learnqa.ru";
+    String url = "https://playground.learnqa.ru/api";
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
@@ -31,7 +31,7 @@ public class UserGetTestCase extends BaseTestCase {
     public void testGetUserDataNotAuth(){
 
         Response responseUserData = RestAssured
-                .get("https://playground.learnqa.ru/api/user/2")
+                .get(url + "/user/2")
                 .andReturn();
 
         System.out.println(responseUserData.asString());
@@ -53,7 +53,7 @@ public class UserGetTestCase extends BaseTestCase {
         Response responseGetAuth = RestAssured
                 .given()
                 .body(authData)
-                .post("https://playground.learnqa.ru/api/user/login")
+                .post(url + "/user/login")
                 .andReturn();
 
         String header = this.getHeader(responseGetAuth, "x-csrf-token");
@@ -63,7 +63,7 @@ public class UserGetTestCase extends BaseTestCase {
                 .given()
                 .header("x-csrf-token", header)
                 .cookie("auth_sid", cookie)
-                .get("https://playground.learnqa.ru/api/user/2")
+                .get(url + "/user/2")
                 .andReturn();
 
         String[] expectedFields = {"username", "firstName" , "lastName","email" };
@@ -89,7 +89,7 @@ public class UserGetTestCase extends BaseTestCase {
 
 // Авторизация под пользователем для запроса данных
         Response responseGetAuth = apiCoreRequests
-                .getAuthRequest(url +"/api/user/login", authData);
+                .getAuthRequest(url +"/user/login", authData);
 
         String header = this.getHeader(responseGetAuth, "x-csrf-token");
         String cookie = this.getCookie(responseGetAuth, "auth_sid");
@@ -97,7 +97,7 @@ public class UserGetTestCase extends BaseTestCase {
 
         // Запрос данных не авторизованного аккаунта
         Response responseUserDate = apiCoreRequests
-                .getRequestUserInfo(url + "/api/user/", header, cookie, 1);
+                .getRequestUserInfo(url + "/user/", header, cookie, 1);
 
         // Сами проверки на отсутствие совпадений с полями которых быть не должно + Проверка на наличие поля которое должно быть
         Assertions.assertJsonHasField(responseUserDate, "username");

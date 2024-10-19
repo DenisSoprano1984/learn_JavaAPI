@@ -26,7 +26,7 @@ public class UserEditTest extends BaseTestCase {
 
     String cookie;
     String header;
-    String url = "https://playground.learnqa.ru";
+    String url = "https://playground.learnqa.ru/api";
 
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
@@ -39,7 +39,7 @@ public class UserEditTest extends BaseTestCase {
         JsonPath responseCreateAuth = RestAssured
                 .given()
                 .body(userData)
-                .post("https://playground.learnqa.ru/api/user/")
+                .post(url+ "/user/")
                 .jsonPath();
 
 String userId = responseCreateAuth.getString("id");
@@ -53,7 +53,7 @@ String userId = responseCreateAuth.getString("id");
         Response responseGetAuth = RestAssured
                 .given()
                 .body(authData)
-                .post("https://playground.learnqa.ru/api/user/login")
+                .post(url + "/user/login")
                 .andReturn();
 
 
@@ -68,7 +68,7 @@ String userId = responseCreateAuth.getString("id");
                 .header("x-csrf-token", this.getHeader(responseGetAuth, "x-csrf-token"))
                 .cookie("auth_sid", this.getCookie(responseGetAuth, "auth_sid"))
                 .body(editData)
-                .put("https://playground.learnqa.ru/api/user/" + userId)
+                .put(url + "/user/" + userId)
                 .andReturn();
 
 
@@ -77,7 +77,7 @@ String userId = responseCreateAuth.getString("id");
                 .given()
                 .header("x-csrf-token", this.getHeader(responseGetAuth, "x-csrf-token"))
                 .cookie("auth_sid", this.getCookie(responseGetAuth, "auth_sid"))
-                .get("https://playground.learnqa.ru/api/user/" + userId)
+                .get(url + "/user/" + userId)
                 .andReturn();
 
         //System.out.println(responseUserData.asString());
@@ -101,7 +101,7 @@ String userId = responseCreateAuth.getString("id");
         Map<String, String> userData = DataGenerator.getRegistrationData();
 
         JsonPath responseCreateAuth = apiCoreRequests
-                .responseCreateUserJson(url + "/api/user/", userData );
+                .responseCreateUserJson(url + "/user/", userData );
 
 
         int userId = responseCreateAuth.getInt("id");
@@ -117,7 +117,7 @@ String userId = responseCreateAuth.getString("id");
         editData.put("firstName", newName);
 
         Response responseEditUser = apiCoreRequests
-                .putNewUserData(url + "/api/user/" + userId, "header", "cookie", editData);
+                .putNewUserData(url + "/user/" + userId, "header", "cookie", editData);
 
         //System.out.println("Ответ после попытке изменения " + responseEditUser.asString());
         Assertions.assertJsonHasField(responseEditUser, "error");
@@ -129,11 +129,11 @@ String userId = responseCreateAuth.getString("id");
         authData.put("password", userData.get("password"));
 
         Response responseGetAuth = apiCoreRequests
-                .makePostRequest(url + "/api/user/login", authData);
+                .makePostRequest(url + "/user/login", authData);
 
         //get user data for check
         Response responseUserData = apiCoreRequests
-                .getRequestUserInfo(url + "/api/user/" ,
+                .getRequestUserInfo(url + "/user/" ,
                         this.getHeader(responseGetAuth,"x-csrf-token"),
                         this.getCookie(responseGetAuth,"auth_sid"),
                         userId);
@@ -153,7 +153,7 @@ String userId = responseCreateAuth.getString("id");
         Map<String, String> userData = DataGenerator.getRegistrationData();
 
         JsonPath responseCreateAuth = apiCoreRequests
-                .responseCreateUserJson(url + "/api/user/", userData );
+                .responseCreateUserJson(url + "/user/", userData );
 
         System.out.println("какой-то ответ : " + responseCreateAuth.getString("$"));
 
@@ -168,7 +168,7 @@ String userId = responseCreateAuth.getString("id");
         authDataAnotherAcc.put("password", "1234");
 
         Response authDataAnotherAccFor = apiCoreRequests
-                .getAuthRequest(url +"/api/user/login", authDataAnotherAcc);
+                .getAuthRequest(url +"/user/login", authDataAnotherAcc);
 
         System.out.println(authDataAnotherAccFor.asString());
 
@@ -180,7 +180,7 @@ String userId = responseCreateAuth.getString("id");
 
         Response responseEditUser = apiCoreRequests
                 .putNewUserData(
-                        url + "/api/user/" + userId,
+                        url + "/user/" + userId,
                         this.getHeader(authDataAnotherAccFor, "x-csrf-token"),
                         this.getCookie(authDataAnotherAccFor, "auth_sid"),
                         editData);
@@ -197,11 +197,11 @@ String userId = responseCreateAuth.getString("id");
         authData.put("password", userData.get("password"));
 
         Response responseGetAuth = apiCoreRequests
-                .makePostRequest(url + "/api/user/login", authData);
+                .makePostRequest(url + "/user/login", authData);
 
         //get user data for check
         Response responseUserData = apiCoreRequests
-                .getRequestUserInfo(url + "/api/user/" ,
+                .getRequestUserInfo(url + "/user/" ,
                         this.getHeader(responseGetAuth,"x-csrf-token"),
                         this.getCookie(responseGetAuth,"auth_sid"),
                         userId);
@@ -251,7 +251,7 @@ String userId = responseCreateAuth.getString("id");
         Map<String, String> userData = DataGenerator.getRegistrationData();
 
         JsonPath responseCreateAuth = apiCoreRequests
-                .responseCreateUserJson(url + "/api/user/", userData );
+                .responseCreateUserJson(url + "/user/", userData );
 
         //System.out.println("какой-то ответ : " + responseCreateAuth.getString("$"));
 
@@ -267,7 +267,7 @@ String userId = responseCreateAuth.getString("id");
         authData.put("password", userData.get("password"));
 
         Response responseGetAuth = apiCoreRequests
-                .makePostRequest(url + "/api/user/login", authData);
+                .makePostRequest(url + "/user/login", authData);
 
         this.cookie = this.getCookie(responseGetAuth,"auth_sid");
         this.header = this.getHeader(responseGetAuth,"x-csrf-token");
@@ -282,7 +282,7 @@ String userId = responseCreateAuth.getString("id");
 
         Response responseEditUser = apiCoreRequests
                 .putNewUserData(
-                        url + "/api/user/" + userId,
+                        url + "/user/" + userId,
                         this.header,
                         this.cookie,
                         editData);
@@ -296,7 +296,7 @@ String userId = responseCreateAuth.getString("id");
 
         //get user data for check
         Response responseUserData = apiCoreRequests
-                .getRequestUserInfo(url + "/api/user/" ,
+                .getRequestUserInfo(url + "/user/" ,
                         this.header,
                         this.cookie,
                         userId);
@@ -324,7 +324,7 @@ String userId = responseCreateAuth.getString("id");
         Map<String, String> userData = DataGenerator.getRegistrationData();
 
         JsonPath responseCreateAuth = apiCoreRequests
-                .responseCreateUserJson(url + "/api/user/", userData );
+                .responseCreateUserJson(url + "/user/", userData );
 
         //System.out.println("какой-то ответ : " + responseCreateAuth.getString("$"));
 
@@ -340,7 +340,7 @@ String userId = responseCreateAuth.getString("id");
         authData.put("password", userData.get("password"));
 
         Response responseGetAuth = apiCoreRequests
-                .makePostRequest(url + "/api/user/login", authData);
+                .makePostRequest(url + "/user/login", authData);
 
         this.cookie = this.getCookie(responseGetAuth,"auth_sid");
         this.header = this.getHeader(responseGetAuth,"x-csrf-token");
@@ -355,7 +355,7 @@ String userId = responseCreateAuth.getString("id");
 
         Response responseEditUser = apiCoreRequests
                 .putNewUserData(
-                        url + "/api/user/" + userId,
+                        url + "/user/" + userId,
                         this.header,
                         this.cookie,
                         editData);
@@ -369,7 +369,7 @@ String userId = responseCreateAuth.getString("id");
 
         //get user data for check
         Response responseUserData = apiCoreRequests
-                .getRequestUserInfo(url + "/api/user/" ,
+                .getRequestUserInfo(url + "/user/" ,
                         this.header,
                         this.cookie,
                         userId);

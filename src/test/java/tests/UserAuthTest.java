@@ -31,6 +31,7 @@ import lib.ApiCoreRequests;
 
 public class UserAuthTest extends BaseTestCase {
 
+    String url = "https://playground.learnqa.ru/api";
     String cookie;
     String header;
     int userIdOnAuth;
@@ -43,7 +44,7 @@ public void loginUser(){
         authData.put("password", "1234");
 
         Response responseGetAuth = apiCoreRequests
-                .makePostRequest("https://playground.learnqa.ru/api/user/login", authData);
+                .makePostRequest(url + "/user/login", authData);
 //                .given()
 //                .body(authData)
 //                .post("https://playground.learnqa.ru/api/user/login")
@@ -89,7 +90,7 @@ public void loginUser(){
 
         Response responseCheckAuth = apiCoreRequests
                 .makeGetRequest(
-                        "https://playground.learnqa.ru/api/user/auth",
+                        url + "/user/auth",
                         this.header,
                         this.cookie
                 );
@@ -128,17 +129,17 @@ Assertions.asserJsonByName(responseCheckAuth, "user_id", this.userIdOnAuth );
 //        Headers headers = responseGetAuth.getHeaders();
 
         RequestSpecification spec = RestAssured.given();
-        spec.baseUri("https://playground.learnqa.ru/api/user/auth");
+        spec.baseUri( url + "/user/auth");
 
         if (condition.equals("cookie")) {
             Response responseForCheck = apiCoreRequests.makeGetRequestWhithCookie(
-                    "https://playground.learnqa.ru/api/user/auth",
+                    url + "/user/auth",
                     this.cookie
             );
             Assertions.asserJsonByName(responseForCheck, "user_id", 0);
         } else if (condition.equals("headers")) {
             Response responseForCheck = apiCoreRequests.makeGetRequestwithTokenOnly(
-                    "https://playground.learnqa.ru/api/user/auth",
+                    url + "/user/auth",
                     this.header
             );
             Assertions.asserJsonByName(responseForCheck, "user_id", 0);

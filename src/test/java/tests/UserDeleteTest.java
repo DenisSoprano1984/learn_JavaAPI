@@ -25,7 +25,7 @@ import java.util.Map;
 public class UserDeleteTest extends BaseTestCase {
 
 
-    String url = "https://playground.learnqa.ru";
+    String url = "https://playground.learnqa.ru/api";
     //int vinUserId = 2;
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
@@ -42,7 +42,7 @@ public class UserDeleteTest extends BaseTestCase {
         authDataTwoAcc.put("password", "1234");
 
         Response authDataAnotherAccFor = apiCoreRequests
-                .getAuthRequest(url + "/api/user/login", authDataTwoAcc);
+                .getAuthRequest(url + "/user/login", authDataTwoAcc);
 
         //System.out.println(authDataAnotherAccFor.asString());
         String userIdString = String.valueOf(getIntFromJson(authDataAnotherAccFor,"user_id"));
@@ -92,7 +92,7 @@ public class UserDeleteTest extends BaseTestCase {
         Map<String, String> userData = DataGenerator.getRegistrationData();
 
         JsonPath responseCreateAuth = apiCoreRequests
-                .responseCreateUserJson(url + "/api/user/", userData );
+                .responseCreateUserJson(url + "/user/", userData );
 
 //        System.out.println("какой-то ответ : " + responseCreateAuth.getString("$"));
 
@@ -111,7 +111,7 @@ public class UserDeleteTest extends BaseTestCase {
         authData.put("password", userData.get("password"));
 
         Response responseGetAuth = apiCoreRequests
-                .makePostRequest(url + "/api/user/login", authData);
+                .makePostRequest(url + "/user/login", authData);
 
 //        this.cookie = this.getCookie(responseGetAuth,"auth_sid");
 //        this.header = this.getHeader(responseGetAuth,"x-csrf-token");
@@ -133,7 +133,7 @@ public class UserDeleteTest extends BaseTestCase {
         //Запрос инфы по пользователю которого удалили под последней авторизацией
 
         Response responseUserData = apiCoreRequests
-                .getRequestUserInfo(url + "/api/user/" ,
+                .getRequestUserInfo(url + "/user/" ,
                         this.getHeader(responseGetAuth,"x-csrf-token"),
                         this.getCookie(responseGetAuth,"auth_sid"),
                         userId);
@@ -169,7 +169,7 @@ public class UserDeleteTest extends BaseTestCase {
         Map<String, String> userData = DataGenerator.getRegistrationData();
 
         JsonPath responseCreateAuth = apiCoreRequests
-                .responseCreateUserJson(url + "/api/user/", userData );
+                .responseCreateUserJson(url + "/user/", userData );
 
 //        System.out.println("какой-то ответ : " + responseCreateAuth.getString("$"));
 
@@ -186,7 +186,7 @@ public class UserDeleteTest extends BaseTestCase {
         authDataTwoAcc2.put("password", "1234");
 
         Response authDataAnotherAccFor = apiCoreRequests
-                .getAuthRequest(url + "/api/user/login", authDataTwoAcc2);
+                .getAuthRequest(url + "/user/login", authDataTwoAcc2);
 
 
 
