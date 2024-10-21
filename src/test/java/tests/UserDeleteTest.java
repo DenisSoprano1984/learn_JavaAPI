@@ -100,7 +100,7 @@ public class UserDeleteTest extends BaseTestCase {
     @Tag("Какой-то=тэг=для=удаления")
     @Tag("Какой-то_ТЕГ_для_отчета+2")
     @Tag("42")
-    @Tag("Какой-то ТЕГ для отчета 3")
+
     @Severity(value = SeverityLevel.MINOR)
 
     @Owner("Denis Soprano")
