@@ -10,6 +10,7 @@ import lib.Assertions;
 import lib.ApiCoreRequests;
 //import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -26,6 +27,9 @@ public class UserGetTestCase extends BaseTestCase {
 
 
     @Test
+    @Tag("Какой-то=тэг=для=удаления")
+    @Tag("Какой-то_ТЕГ_для_отчета+2")
+    @Tag("42")
     @Description("Проверки на поля которых не должно быть при запросе без авторизации")
     @DisplayName("Проверка на поля в ответе на не авторизованного пользователя")
     public void testGetUserDataNotAuth(){
@@ -41,6 +45,10 @@ public class UserGetTestCase extends BaseTestCase {
         Assertions.assertJsonHasNotField(responseUserData, "email");
     }
     @Test
+    @Tag("Какой-то=тэг=для=удаления")
+    @Tag("Какой-то_ТЕГ_для_отчета+2")
+    @Tag("42")
+    @Tag("Какой-то ТЕГ для отчета 3")
     @Description("Проверки на наличие полей у авторизованного пользователя")
     @DisplayName("Проверка на поля в ответе на авторизованного пользователя")
     public void testGetUserDetailsAuthAsSameUser() {
@@ -78,6 +86,10 @@ public class UserGetTestCase extends BaseTestCase {
 
 
     @Test
+    @Tag("Какой-то=тэг=для=удаления")
+    @Tag("Какой-то_ТЕГ_для_отчета+2")
+    @Tag("42")
+    @Tag("Ex16")
     @Description("Проверки на наличие полей у авторизованного пользователя")
     @DisplayName("Ex16: Запрос данных другого пользователя")
     public void testGetUserDetailsAuthAsAnotherUser() {

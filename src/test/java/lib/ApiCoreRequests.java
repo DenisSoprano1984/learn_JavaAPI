@@ -16,7 +16,7 @@ import static io.restassured.RestAssured.given;
 
 public class ApiCoreRequests {
 
-    @Step("make a get-request with token and auth cookie")
+    @Step("make a get-request with token and auth cookie. 'Тут Step'")
     public Response makeGetRequest(String url, String token, String cookie) {
         return given()
                 .filter(new AllureRestAssured())
@@ -192,7 +192,7 @@ public class ApiCoreRequests {
 
     }
 
-    @Step("make a get-request with token and auth cookie")
+    @Step("make a get-request with token and auth cookie. 'Тут Step'")
     public Response getRequestUserInfo(String url, String token, String cookie, int user_id) {
         return given()
                 .filter(new AllureRestAssured())
@@ -202,7 +202,7 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-    @Step("get auth data")
+    @Step("get auth data. 'Тут Step'")
     public Response getAuthRequest(String url, Map<String, String> authData) {
         return given()
                 .filter(new AllureRestAssured())
@@ -213,7 +213,7 @@ public class ApiCoreRequests {
 
 
     }
-    @Step("edit user")
+    @Step("edit user. 'Тут Step'")
     public Response putNewUserData(String url,  String token, String cookie, Map<String, String> newData) {
         return given()
                 .filter(new AllureRestAssured())
@@ -225,7 +225,7 @@ public class ApiCoreRequests {
 
     }
 
-    @Step("delete user")
+    @Step("delete user. 'Тут Step'")
     public Response deleteUser (String url,  String token, String cookie, int userId) {
         return given()
                 .filter(new AllureRestAssured())
@@ -235,7 +235,7 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-    @Step("GetWOauth")
+    @Step("GetWOauth. 'Тут Step'")
     public Response getUserinfoWOauth (String url, int userId){
         return given()
                 .filter(new AllureRestAssured())

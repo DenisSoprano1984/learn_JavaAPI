@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -11,6 +9,7 @@ import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerator;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -18,8 +17,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.HashMap;
 import java.util.Map;
 
-@Epic("Registration cases")
-@Feature("Registrations")
+@Epic("Registration cases/кейсы по регистрации")
+@Feature("Registrations/Регистрация")
 
 public class UserRegisterCase extends BaseTestCase {
 
@@ -28,6 +27,10 @@ public class UserRegisterCase extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
+    @Tag("Какой-то=тэг=для=удаления")
+    @Tag("Какой-то_ТЕГ_для_отчета+2")
+    @Tag("42")
+    @Tag("Какой-то ТЕГ для отчета 3")
     @Description("this test Create User With Existing Email! ")
     @DisplayName("Test negative  create user!2")
 //    public void testCreateUserWithExistingEmail() {
@@ -75,6 +78,8 @@ public class UserRegisterCase extends BaseTestCase {
 
 
     @Test
+    @Owner(value = "Denis Soprano3 'Owner'")
+    @Issue(value = "API-27 'Issue'")
     @Description("this test Create User Successfully 'Description'")
     @DisplayName("Test positive create user 'DisplayName'")
     public void testCreateUserSuccessfully() {
@@ -100,6 +105,8 @@ public class UserRegisterCase extends BaseTestCase {
 
     // Создание пользователя с некорректным email - без символа @
     @Test
+    @Owner(value = "Denis Soprano3 'Owner'")
+    @Issue(value = "API-27 'Issue' ")
     @Description("this test Create User With Out At")
     @DisplayName("Test negative create user not valid email")
     public void testCreateUserWithOutAt() {
@@ -132,6 +139,8 @@ public class UserRegisterCase extends BaseTestCase {
 }
     // Создание пользователя с очень коротким именем в один символ
     @Test
+    @Owner(value = "Denis Soprano 'Owner'")
+    @Issue(value = "API-27 'Issue'")
     @Description("this test Create User With Short First Name")
     @DisplayName("Test negative create user With Short First Name")
     public void testCreateUserWithShortFirstName() {
@@ -160,6 +169,8 @@ public class UserRegisterCase extends BaseTestCase {
 
     //Создание пользователя с очень длинным именем - длиннее 250 символов
     @Test
+    @Owner(value = "Denis Soprano3 'Owner'")
+    @Issue(value = "API-27 'Issue'")
     @Description("this test Create User With to long First Name")
     @DisplayName("Test negative create user With to long First Name")
     public void testCreateUserWithToLongFirstName() {

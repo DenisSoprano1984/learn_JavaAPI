@@ -1,5 +1,9 @@
 package tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity.*;
+
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
@@ -10,29 +14,36 @@ import lib.DataGenerator;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
-@Epic("Delete cases")
-@Feature("Delete")
+@Epic("Delete cases 'EPIC'")
+@Feature("Delete 'Feature' ")
 public class UserDeleteTest extends BaseTestCase {
 
 
+    //String url = "https://playground.learnqa.ru/api_dev";
     String url = "https://playground.learnqa.ru/api_dev";
     //int vinUserId = 2;
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
+    @Issue(value = "API-27 'Issue'")
+    @Link(name = "learnqa.ru 'Link -тут'", url = "https://playground.learnqa.ru/")
+    @Owner(value = "Denis Soprano 2 'Owner'")
+    //@Tags(value = "SomeTags")
+    @Tag("Какой-то_тэг_для_удаления")
+    @Tag(value = "Какой-то_ТЕГ_для+отчета")
 
     @Test
-    @Description("this test for try to delete user with 2 id ")
-    @DisplayName("Удаление второго акка")
+
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Description("this test for try to delete user with 2 id 'Description тут'")
+    @DisplayName("Удаление второго акка 'DisplayName'")
     public void testTryToDeleteUserTwo() {
 
         //Авторизация под 2 акком
@@ -86,6 +97,13 @@ public class UserDeleteTest extends BaseTestCase {
     @Test
     @Description("this test for delete created user")
     @DisplayName("Успешное удаление пользователя")
+    @Tag("Какой-то=тэг=для=удаления")
+    @Tag("Какой-то_ТЕГ_для_отчета+2")
+    @Tag("42")
+    @Tag("Какой-то ТЕГ для отчета 3")
+    @Severity(value = SeverityLevel.MINOR)
+
+    @Owner("Denis Soprano")
     public void testDeleteSuccessfully() {
 
         //Generate user for delete
@@ -158,9 +176,14 @@ public class UserDeleteTest extends BaseTestCase {
 
 
 
-
-
+    @Issue(value = "API-27 'Issue'")
+    @Link(name = "learnqa.ru 'Link -тут'", url = "https://playground.learnqa.ru/")
+    @Owner(value = "Denis Soprano3 'Owner'")
+    //@Tags(value = "SomeTags")
     @Test
+    @Tag("42")
+    @Tag("42-1")
+    @Severity(value = SeverityLevel.MINOR)
     @Description("this test for delete created user ansuccessfully")
     @DisplayName("попытка удаления пользователя под другим")
     public void testDeleteUnSuccessfully() {

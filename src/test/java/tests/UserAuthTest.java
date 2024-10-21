@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.http.Headers;
 import io.restassured.path.json.JsonPath;
@@ -8,6 +9,7 @@ import io.restassured.specification.RequestSpecification;
 import lib.BaseTestCase;
 import lib.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,9 +17,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
 import org.junit.jupiter.api.DisplayName;
 
 
@@ -28,6 +27,10 @@ import lib.ApiCoreRequests;
 
 @Epic("Authorisations cases")
 @Feature("Auhtorisation")
+
+@interface MyLabel {
+    String value();
+}
 
 public class UserAuthTest extends BaseTestCase {
 
@@ -62,6 +65,14 @@ public void loginUser(){
 
 
     @Test
+    @Tag("Какой-то=тэг=для=удаления")
+    @Tag("Какой-то_ТЕГ_для_отчета+2")
+    @Tag("42")
+    @Owner(value = "Denis Soprano 'Owner'")
+    @TmsLink("MAYPROBRO-1")
+    @Issue(value = "API-27 'Issue'")
+    @MyLabel(value = "мой_собственный_лейбл.Неработает!")
+    @Severity(value = SeverityLevel.BLOCKER)
     @Description("this test successfully authorize user by email and password")
     @DisplayName("Test positive auth user")
     public void testAuthUser(){
@@ -112,6 +123,11 @@ Assertions.asserJsonByName(responseCheckAuth, "user_id", this.userIdOnAuth );
 
     @Description("This test check authorization status wo sending auth cookie or token")
     @DisplayName("Test negative auth user")
+    @Tag("Параметризован")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Tag("42")
+    @Owner(value = "Denis Soprano 'Owner'")
+    @Issue(value = "API-27 'Issue'")
     @ParameterizedTest
     @ValueSource(strings = {"cookie", "headers"})
     public void testNegativeAuthUser(String condition){

@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -16,11 +17,12 @@ import java.util.Map;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
+import org.junit.jupiter.api.Tag;
 
 
 
-@Epic("Edit cases")
-@Feature("Edit")
+@Epic("Edit cases/ака изменение тестов")
+@Feature("Edit/редактирование")
 
 public class UserEditTest extends BaseTestCase {
 
@@ -32,12 +34,17 @@ public class UserEditTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
+    @Tag("Какой-то тэг для удаления")
+    @Tag("Какой-то ТЕГ для отчета")
+    @Description("this test for edit new user")
+    @DisplayName("изменение только что созданного пользователя")
     public void testEditJustCreatedTest() {
         //Generate user
         Map<String, String> userData = DataGenerator.getRegistrationData();
 
         JsonPath responseCreateAuth = RestAssured
                 .given()
+                .filter(new AllureRestAssured())
                 .body(userData)
                 .post(url+ "/user/")
                 .jsonPath();
@@ -93,6 +100,10 @@ String userId = responseCreateAuth.getString("id");
 
 
     @Test
+    @Tag("Какой-то=тэг=для=удаления")
+    @Tag("Какой-то_ТЕГ_для_отчета+2")
+    @Tag("42")
+    @Tag("Какой-то ТЕГ для отчета 3")
     @Description("this test for try to change name but unauthorized user")
     @DisplayName("изменение от имени от неавторизованного пользователя")
     public void testEditButNotAuthorised() {
@@ -145,6 +156,10 @@ String userId = responseCreateAuth.getString("id");
     }
 
     @Test
+    @Tag("Какой-то=тэг=для=удаления")
+    @Tag("Какой-то_ТЕГ_для_отчета+2")
+    @Tag("42")
+    @Tag("Какой-то ТЕГ для отчета 3")
     @Description("this test for try to change name but authorized Another user")
     @DisplayName("изменение от имени от Другого пользователя")
     public void testEditButAuthorisedAnotherUser() {
